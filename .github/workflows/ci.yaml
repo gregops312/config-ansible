@@ -1,0 +1,12 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  something:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
