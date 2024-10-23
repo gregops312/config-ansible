@@ -1,9 +1,10 @@
 ---
-- include_tasks: packages.yml
+# - name: Include packages
+#   include_tasks: packages.yml
 # - include_tasks: steam.yaml
 
 - name: Place backup script
-  copy:
+  ansible.builtin.copy:
     src: files/media_backup.sh
     dest: /usr/local/bin/media_backup
     owner: root
@@ -11,7 +12,7 @@
     mode: "0744"
 
 - name: Place cronjob
-  copy:
+  ansible.builtin.copy:
     src: files/media_cron.sh
     dest: /etc/cron.d/media_backup
     owner: root
