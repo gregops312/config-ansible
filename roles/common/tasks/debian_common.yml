@@ -1,0 +1,23 @@
+---
+- name: "Apt : install"
+  ansible.builtin.apt:
+    update_cache: true
+    name: "{{ apt_install }}"
+    state: present
+
+# TODO: expand this
+# - name: Gather the package facts
+#   ansible.builtin.package_facts:
+#     manager: auto
+
+# - name: Check whether a package called foobar is installed
+#   ansible.builtin.debug:
+#     msg: "{{ ansible_facts.packages['python3'] }}"
+
+# - ansible.builtin.assert:
+#     that:
+#       - "{{ ansible_facts.packages['python3'] }}"
+
+# - ansible.builtin.assert:
+#     that:
+#       - "{{ ansible_facts.packages['vim'] }}"
