@@ -1,0 +1,31 @@
+# ---
+# https://hub.docker.com/_/microsoft-windows
+# docker:
+#   hosts:
+#     ansible-test:
+#       ansible_connection: docker
+
+# desktop:
+#   hosts:
+#     desktop:
+#       ansible_connection: local
+
+# laptop:
+#   hosts:
+#     laptop:
+#       ansible_connection: local
+
+# https://ayeshasilvia.medium.com/testing-ansible-playbook-in-a-docker-container-21628e9ee256
+# local:
+#   hosts:
+#     ansible-test:
+#       ansible_connection: docker
+
+# server:
+#   hosts: kmanhq.dev
+
+# vbox:
+#   hosts:
+#     something:
+# [virtualbox]
+# 127.0.0.1 ansible_port=2222
