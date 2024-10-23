@@ -1,0 +1,18 @@
+LogLevel Error
+ServerAliveInterval 60
+ControlPath ~/.ssh/cms/%r@%h:%p
+ControlMaster auto
+ControlPersist 30m
+IdentityFile ~/.ssh/id_rsa
+
+Host *
+  PubkeyAcceptedKeyTypes=+ssh-rsa
+  HostKeyAlgorithms=+ssh-rsa
+
+Host home
+  HostName kmanhq.dev
+  User gkman
+
+Host *.github.com *@github.com
+  ControlMaster no
+  ControlPath none

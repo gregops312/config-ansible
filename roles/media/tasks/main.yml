@@ -1,0 +1,19 @@
+---
+- include_tasks: packages.yml
+# - include_tasks: steam.yaml
+
+- name: Place backup script
+  copy:
+    src: files/media_backup.sh
+    dest: /usr/local/bin/media_backup
+    owner: root
+    group: root
+    mode: "0744"
+
+- name: Place cronjob
+  copy:
+    src: files/media_cron.sh
+    dest: /etc/cron.d/media_backup
+    owner: root
+    group: root
+    mode: "0744"

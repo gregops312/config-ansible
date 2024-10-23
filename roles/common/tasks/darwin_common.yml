@@ -1,0 +1,32 @@
+# https://gist.github.com/mrlesmithjr/f3c15fdd53020a71f55c2032b8be2eda
+---
+- name: Ensure Homebrew Is Installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/brew
+  register: homebrew_exists
+
+- name: "Brew : cask : install"
+  when: homebrew_exists.stat.exists
+  community.general.homebrew_cask:
+    name: "{{ brew_cask_install_pkgs }}"
+    state: present
+    update_homebrew: true
+
+- name: "Brew : cask : remove"
+  when: homebrew_exists.stat.exists
+  community.general.homebrew_cask:
+    state: absent
+    name: "{{ brew_cask_remove_pkgs }}"
+
+- name: "Brew : pkg : install"
+  when: homebrew_exists.stat.exists
+  community.general.homebrew:
+    name: "{{ brew_install_pkgs }}"
+    state: present
+    update_homebrew: true
+
+- name: "Brew : pkg : remove"
+  when: homebrew_exists.stat.exists
+  community.general.homebrew:
+    state: absent
+    name: "{{ brew_remove_pkgs }}"

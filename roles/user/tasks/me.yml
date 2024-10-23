@@ -1,0 +1,22 @@
+---
+- name: Create user
+  user:
+    name: gkman
+    append: yes
+    groups: 
+      - sudo
+      - docker
+    generate_ssh_key: yes
+    # gem install mkpasswd & mkpasswd --method=sha-512
+    password: '$6$4w0aPVWu5tNULzSu$JGItGXOVbMfs/UErQnfU.4b93mOr.4lDIZBMXmo20aiuUWXKKtTWKea0yRSGBd4vlktdegL0TJTOl8qmpK4gv0' # testPassword
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+    ssh_key_type: rsa
+
+- name: Copy key script
+  copy:
+    src: files/post-configure.sh
+    dest: /home/gkman/post-configure.sh
+    owner: gkman
+    group: gkman
+    mode: "0744"
