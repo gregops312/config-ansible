@@ -1,0 +1,7 @@
+---
+- name: Server
+  hosts: server
+  become: true
+  roles:
+    - common
+  

@@ -1,0 +1,78 @@
+---
+apt_install:
+  - apt-transport-https
+  - curl
+  - gcc
+  - git
+  - gnupg2
+  - htop
+  # https://askubuntu.com/questions/1371150/usb-serial-devices-not-showing-in-dev-serial-by-id-after-update-from-21-04-to
+  # - linux-modules-extra-raspi
+  - make
+  - ncdu
+  - net-tools
+  - python3
+  - python3-pip
+  - python3-venv
+  - ssh
+  - tmux
+  - tree
+  - vim
+  - xclip
+  - zsh
+
+apt_remove:
+
+brew_cask_install_pkgs:
+  # - adoptopenjdk
+  - brave-browser
+  - docker
+  - google-cloud-sdk
+  - google-drive
+  - karabiner-elements
+  - logitech-g-hub
+  - logitech-options
+  - slack
+  - spectacle
+  - steam
+  - vagrant
+  - virtualbox
+  - visual-studio-code
+  - vlc
+  - wireshark
+  - zoom
+
+brew_cask_remove_pkgs:
+  - dbeaver-community
+  - iterm2
+  - joplin
+  - lens
+  - microsoft-remote-desktop
+  - opencpn
+  - plex
+  - signal
+  - stellarium
+  - thunderbird
+  - ytmdesktop-youtube-music
+
+brew_install_pkgs:
+  - ansible
+  - awscli
+  - azure-cli
+  - bash
+  - coreutils
+  - telnet
+  - terraform-docs
+  - tfenv
+  - tmux
+  - tree
+  - vim
+  - watch
+  - wget
+
+brew_remove_pkgs:
+  - influxdb-cli
+  - influxdb@1
+  - kafka
+  - kapacitor
+  - zookeeper
