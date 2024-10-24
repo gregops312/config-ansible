@@ -25,3 +25,16 @@ pip install -r requirements.txt
   - [Vagrant Powershell](https://gist.github.com/akrabat/a4bf3e60ea9c3a39a2c162afcf154d24)
 - Vagrant
   - [Ansible](https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_intro)
+
+## Misc
+
+### Playbooks
+
+```yaml
+# pre_tasks can be used before running roles
+pre_tasks:
+  - name: Laptop proof
+    ansible.builtin.debug:
+      msg:
+        - "{{ ansible_facts }}"
+```
