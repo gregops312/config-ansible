@@ -6,7 +6,7 @@ lint:
 
 .PHONY: laptop
 laptop:
-	ansible-playbook -f 30 -i inventory.yml --limit laptop playbook.yml
+	ansible-playbook -c local -f 30 -i localhost, laptop.yml
 
 .PHONY: server
 server:
