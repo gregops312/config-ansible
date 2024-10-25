@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Explanation of possible values from -i flag
 # https://stackoverflow.com/a/36851784/5494790
