@@ -6,6 +6,7 @@
     - common
     - brave
     - docker
+    - user
     - vagrant
     - virtual_box
-    - user
+    - vs_code
