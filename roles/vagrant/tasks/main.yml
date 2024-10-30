@@ -1,0 +1,3 @@
+---
+- name: Include Vagrant
+  ansible.builtin.include_tasks: 'vagrant_{{ ansible_os_family | lower }}.yml'

@@ -1,0 +1,23 @@
+# https://www.virtualbox.org/wiki/Linux_Downloads
+---
+- name: Architecture
+  ansible.builtin.command: dpkg --print-architecture
+  register: arch
+  changed_when: arch.changed
+
+- name: "Add : apt key"
+  ansible.builtin.get_url:
+    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    dest: /usr/share/keyrings/oracle-virtualbox-2016.asc
+    mode: 644
+
+- name: "Add : repository"
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/oracle-virtualbox-2016.asc] \
+      https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    state: present
+
+- name: "Install : virtual box"
+  ansible.builtin.apt:
+    name: virtualbox-7.0
+    update_cache: true

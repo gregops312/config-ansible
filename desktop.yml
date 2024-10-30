@@ -2,10 +2,10 @@
 - name: Desktop
   hosts: all
   become: true
-  pre_tasks:
-    - name: Laptop proof
-      ansible.builtin.debug:
-        msg:
-          - "{{ ansible_os_family }}"
   roles:
     - common
+    - brave
+    - docker
+    - vagrant
+    - virtual_box
+    - user

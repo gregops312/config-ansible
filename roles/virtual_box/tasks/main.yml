@@ -1,0 +1,3 @@
+---
+- name: Include Virtual box
+  ansible.builtin.include_tasks: 'virtual_box_{{ ansible_os_family | lower }}.yml'
