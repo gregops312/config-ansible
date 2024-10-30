@@ -1,0 +1,38 @@
+# https://code.visualstudio.com/docs/setup/linux
+---
+- name: Architecture
+  ansible.builtin.command: dpkg --print-architecture
+  register: arch
+  changed_when: arch.changed
+
+- name: "Add : vscode debconf"
+  ansible.builtin.shell: |
+    set -o pipefail
+    echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
+  args:
+    executable: /bin/bash
+  register: debconf
+  changed_when: debconf.changed
+
+- name: "Apt : install"
+  ansible.builtin.apt:
+    update_cache: true
+    name:
+      - apt-transport-https
+      - gpg
+      - wget
+
+- name: "Add : key"
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/apt/keyrings/packages.microsoft.asc
+    mode: 644
+
+- name: "Add : repo"
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ arch.stdout }} signed-by=/etc/apt/keyrings/packages.microsoft.asc] https://packages.microsoft.com/repos/code stable main"
+
+- name: "Apt : install"
+  ansible.builtin.apt:
+    update_cache: true
+    name: code
