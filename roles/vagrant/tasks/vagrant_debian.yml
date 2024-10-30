@@ -1,0 +1,18 @@
+# https://developer.hashicorp.com/vagrant/install?product_intent=vagrant#linux
+---
+- name: "Add : apt key"
+  ansible.builtin.get_url:
+    url: https://apt.releases.hashicorp.com/gpg
+    dest: /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    mode: 644
+
+- name: "Add : repository"
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    state: present
+    update_cache: true
+
+- name: "Install : virtual box"
+  ansible.builtin.apt:
+    name: vagrant
+    update_cache: true
