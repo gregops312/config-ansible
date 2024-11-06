@@ -1,5 +1,9 @@
 default: lint
 
+.PHONY: desktop
+desktop:
+	ansible-playbook -c local -f 30 -i localhost, desktop.yml
+
 .PHONY: lint
 lint:
 	ansible-lint --force-color
