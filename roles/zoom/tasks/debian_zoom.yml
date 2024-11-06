@@ -1,0 +1,20 @@
+# https://www.zoom.us/download
+---
+- name: Check | installed
+  ansible.builtin.apt:
+    name: zoom
+    state: present
+  register: zoom_installed
+  ignore_errors: true
+
+- name: Download | deb
+  ansible.builtin.get_url:
+    url: https://www.zoom.us/client/6.2.5.2440/zoom_amd64.deb
+    dest: /tmp/zoom_amd64.deb
+    mode: 644
+  when: zoom_installed is failed
+
+- name: Deb | install
+  ansible.builtin.apt:
+    deb: /tmp/zoom_amd64.deb
+  when: zoom_installed is failed
