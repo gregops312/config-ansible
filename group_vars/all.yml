@@ -1,4 +1,8 @@
 ---
+apt_gui_install:
+  - nodejs
+  - npm
+
 apt_install:
   - apt-transport-https
   - curl
