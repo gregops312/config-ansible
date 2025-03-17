@@ -1,0 +1,14 @@
+# https://proton.me/pass/download
+---
+# - name: Check | installed
+#   ansible.builtin.apt:
+#     name: protonmail-desktop
+#     state: present
+#   register: proton_installed
+#   ignore_errors: true
+
+- name: Add | repository
+  ansible.builtin.apt_repository:
+    repo: https://proton.me/download/pass/linux/proton-pass_1.25.0_amd64.deb
+    state: present
+  # when: proton_installed is failed

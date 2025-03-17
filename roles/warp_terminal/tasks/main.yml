@@ -1,0 +1,3 @@
+---
+- name: Include Warp terminal
+  ansible.builtin.include_tasks: '{{ ansible_os_family | lower }}_warp_terminal.yml'

@@ -1,0 +1,14 @@
+# https://proton.me/calendar/download
+---
+# - name: Check | installed
+#   ansible.builtin.apt:
+#     name: protonmail-desktop
+#     state: present
+#   register: proton_installed
+#   ignore_errors: true
+
+- name: Add | repository
+  ansible.builtin.apt_repository:
+    repo: https://proton.me/download/mail/linux/1.6.0/ProtonMail-desktop-beta.deb
+    state: present
+  # when: proton_installed is failed

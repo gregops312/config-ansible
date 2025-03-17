@@ -1,0 +1,6 @@
+---
+- name: "Apt : install"
+  ansible.builtin.apt:
+    update_cache: true
+    name:
+      - wireguard

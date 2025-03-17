@@ -1,0 +1,5 @@
+---
+- name: Ensure group "smarthome" exists
+  ansible.builtin.group:
+    name: smarthome
+    state: present
