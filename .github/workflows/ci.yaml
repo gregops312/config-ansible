@@ -8,10 +8,11 @@ jobs:
   something:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v3
+      - uses: pre-commit/action@v3.0.1
 
-      - name: Run ansible-lint
-        uses: ansible/ansible-lint@main
-        with:
-          args: "--force-color"
+      # - name: Run ansible-lint
+      #   uses: ansible/ansible-lint@main
+      #   with:
+      #     args: "--force-color"

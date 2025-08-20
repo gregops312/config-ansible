@@ -2,8 +2,8 @@
 ---
 - name: Architecture
   ansible.builtin.command: dpkg --print-architecture
-  register: arch
-  changed_when: arch.changed
+  register: vs_code_arch
+  changed_when: vs_code_arch.changed
 
 - name: "Add : vscode debconf"
   ansible.builtin.shell: |
@@ -11,8 +11,8 @@
     echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
   args:
     executable: /bin/bash
-  register: debconf
-  changed_when: debconf.changed
+  register: vs_code_debconf
+  changed_when: vs_code_debconf.changed
 
 - name: "Apt : install"
   ansible.builtin.apt:

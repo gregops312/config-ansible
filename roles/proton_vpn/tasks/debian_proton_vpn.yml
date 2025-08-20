@@ -4,14 +4,14 @@
   ansible.builtin.apt:
     name: proton-vpn-gnome-desktop
     state: present
-  register: proton_installed
+  register: proton_vpn_installed
   ignore_errors: true
 
 - name: Add | repository
   ansible.builtin.apt_repository:
     repo: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.4_all.deb
     state: present
-  when: proton_installed is failed
+  when: proton_vpn_installed is failed
 
 - name: Apt | install
   ansible.builtin.apt:
@@ -20,4 +20,4 @@
       - libayatana-appindicator3-1
       - proton-vpn-gnome-desktop
       - shell-extension-appindicator
-  when: proton_installed is failed
+  when: proton_vpn_installed is failed
