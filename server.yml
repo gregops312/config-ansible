@@ -1,6 +1,25 @@
 ---
 - name: Server
-  hosts: server
   become: true
+  hosts: server
+  remote_user: gkman
   roles:
-    - common
+    - base_packages
+    - docker
+    # - permissions.yaml-- this needs to be figured out from HA repo
+    # - folders.yaml -- each service does its own thing
+      # High
+        # pihole
+        # traefik
+        # zwave
+        # home assistant
+      # Low
+        # whisper
+        # piper
+        # wakeword
+        # wyze
+        # plex
+        # shinobi
+        # influx
+    # -  certbot
+    # - terraria

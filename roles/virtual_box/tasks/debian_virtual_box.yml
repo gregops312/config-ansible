@@ -2,8 +2,8 @@
 ---
 - name: Architecture
   ansible.builtin.command: dpkg --print-architecture
-  register: arch
-  changed_when: arch.changed
+  register: virtual_box_arch
+  changed_when: virtual_box_arch.changed
 
 - name: "Add : apt key"
   ansible.builtin.get_url:

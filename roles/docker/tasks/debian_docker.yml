@@ -2,8 +2,8 @@
 ---
 - name: Architecture
   ansible.builtin.command: dpkg --print-architecture
-  register: arch
-  changed_when: arch.changed
+  register: docker_arch
+  changed_when: docker_arch.changed
 
 - name: "Install : packages"
   ansible.builtin.apt:

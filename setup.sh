@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: setup visudo for passwordless sudo
-
-apt-get install -y \
-	git \
-	curl \
-	make \
-	python3.12-venv \
-	vim \
-	zsh
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
