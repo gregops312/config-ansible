@@ -1,7 +1,7 @@
 ---
 - name: Server
   become: true
-  hosts: server
+  hosts: all
   remote_user: gkman
   roles:
     - base_packages
