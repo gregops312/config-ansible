@@ -31,8 +31,3 @@ jobs:
 
       - name: Run Ansible Playbook
         run: make test-server
-
-      # - name: Run ansible-lint
-      #   uses: ansible/ansible-lint@main
-      #   with:
-      #     args: "--force-color"

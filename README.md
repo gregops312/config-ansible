@@ -1,5 +1,7 @@
 # Config Ansible
 
+Contains Ansible roles for automating system configuration across Linux and macOS.
+
 ## Setup
 
 ```bash
