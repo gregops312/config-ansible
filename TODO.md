@@ -21,7 +21,7 @@
 - plex
 - shinobi
 - influx
--  certbot
+- certbot
 - terraria
 
 ## Linux packages to try
