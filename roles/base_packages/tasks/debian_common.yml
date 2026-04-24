@@ -1,10 +1,9 @@
 ---
 - name: "Apt : install"
   ansible.builtin.apt:
-    update_cache: true
     name: "{{ apt_install }}"
     state: present
-
+    update_cache: true
 # TODO: expand this
 # - name: Gather the package facts
 #   ansible.builtin.package_facts:
