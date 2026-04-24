@@ -84,7 +84,7 @@ brew_remove_pkgs:
 #   - name: influxdb
 #     backup: true
 #   # - name: pihole/dnsmasq.d
-#   # - name:pihole/pihole
+#   # - name: pihole/pihole
 #   - name: shinobi
 #     backup: true
 #   - name: traefik
