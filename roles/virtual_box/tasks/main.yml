@@ -1,3 +1,6 @@
 ---
 - name: Include Virtual box
-  ansible.builtin.include_tasks: '{{ ansible_os_family | lower }}_virtual_box.yml'
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}_virtual_box.yml"
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_architecture in ["x86_64", "amd64"]

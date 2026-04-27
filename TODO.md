@@ -23,6 +23,7 @@
 - influx
 - certbot
 - terraria
+- zed
 
 ## Linux packages to try
 

@@ -1,3 +1,6 @@
 ---
 - name: Include Vagrant
-  ansible.builtin.include_tasks: '{{ ansible_os_family | lower }}_vagrant.yml'
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}_vagrant.yml"
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_architecture in ["x86_64", "amd64"]
