@@ -1,22 +1,8 @@
 ---
 - name: "Apt : install"
+  # TODO: remove this when GitHub actions updates their Ubuntu runners to 25+
+  ignore_errors: true
+  register: base_packages_ignore_errors_register
   ansible.builtin.apt:
     name: "{{ apt_install }}"
-    state: present
     update_cache: true
-# TODO: expand this
-# - name: Gather the package facts
-#   ansible.builtin.package_facts:
-#     manager: auto
-
-# - name: Check whether a package called foobar is installed
-#   ansible.builtin.debug:
-#     msg: "{{ ansible_facts.packages['python3'] }}"
-
-# - ansible.builtin.assert:
-#     that:
-#       - "{{ ansible_facts.packages['python3'] }}"
-
-# - ansible.builtin.assert:
-#     that:
-#       - "{{ ansible_facts.packages['vim'] }}"
