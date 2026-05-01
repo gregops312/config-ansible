@@ -17,11 +17,11 @@
     components: stable
     name: docker
     install_python_debian: true
-    signed_by: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    signed_by: "https://download.docker.com/linux/{{ ansible_facts['distribution'] | lower }}/gpg"
     state: present
-    suites: "{{ ansible_distribution_release }}"
+    suites: "{{ ansible_facts['distribution_release'] }}"
     types: [deb]
-    uris: "https://download.docker.com/linux/{{ ansible_distribution | lower }}"
+    uris: "https://download.docker.com/linux/{{ ansible_facts['distribution'] | lower }}"
 
 - name: "Install : community edition"
   ansible.builtin.apt:

@@ -1,3 +1,3 @@
 ---
 - name: Include Docker
-  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}_docker.yml"
+  ansible.builtin.include_tasks: "{{ ansible_facts['os_family'] | lower }}_docker.yml"

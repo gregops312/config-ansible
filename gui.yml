@@ -6,11 +6,9 @@
     - base_packages
     - brave
     - docker
-    # TODO: fix
     # - proton_vpn
     - user
-    - vagrant
+    # - vagrant
     - virtual_box
-    # TODO: fix
     # - vs_code
     # - zoom

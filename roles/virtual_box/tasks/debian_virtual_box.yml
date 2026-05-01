@@ -5,10 +5,17 @@
   register: virtual_box_arch
   changed_when: virtual_box_arch.changed
 
+- name: "Add : apt key"
+  ansible.builtin.get_url:
+    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    dest: /usr/share/keyrings/oracle-virtualbox-2016.asc
+    mode: 644
+
 - name: "Add : repository"
   ansible.builtin.apt_repository:
-    repo: "deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/oracle-virtualbox-2016.asc] \
-      https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    repo:
+      "deb [arch={{ virtual_box_arch.stdout }} signed-by=/usr/share/keyrings/oracle-virtualbox-2016.asc] \
+      https://download.virtualbox.org/virtualbox/debian {{ ansible_facts['distribution_release'] }} contrib"
     state: present
 
 - name: "Install : virtual box"

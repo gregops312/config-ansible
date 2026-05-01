@@ -41,7 +41,10 @@ docker-playbook: docker-build
 		echo "Example: make docker-playbook PLAYBOOK=server.yml ARGS='--check --diff'"; \
 		exit 1; \
 	fi
-	docker run -d --rm --name ansible-test -v $(PWD):/ansible:ro ansible-test sleep infinity && \
+	@set -e; \
+		docker rm -f ansible-test >/dev/null 2>&1 || true; \
+		trap 'docker stop ansible-test >/dev/null 2>&1 || true' EXIT; \
+		docker run -d --rm --name ansible-test -v $(PWD):/ansible:ro ansible-test sleep infinity >/dev/null; \
 		ansible-playbook -i ansible-test, -c docker -e ansible_user=root $(ARGS) $(PLAYBOOK)
 
 # Interactive shell in the container
