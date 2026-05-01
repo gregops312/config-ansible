@@ -13,8 +13,9 @@
 
 - name: "Add : repository"
   ansible.builtin.apt_repository:
-    repo: "deb [arch={{ arch.stdout }} signed-by=/usr/share/keyrings/oracle-virtualbox-2016.asc] \
-      https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    repo:
+      "deb [arch={{ virtual_box_arch.stdout }} signed-by=/usr/share/keyrings/oracle-virtualbox-2016.asc] \
+      https://download.virtualbox.org/virtualbox/debian {{ ansible_facts['distribution_release'] }} contrib"
     state: present
 
 - name: "Install : virtual box"

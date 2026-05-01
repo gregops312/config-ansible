@@ -9,7 +9,7 @@ apt_install:
   # https://askubuntu.com/questions/1371150/usb-serial-devices-not-showing-in-dev-serial-by-id-after-update-from-21-04-to
   # - linux-modules-extra-raspi
   - make
-  - ncdu # Disk Usage
+  - ncdu
   - net-tools
   - python3
   - python3-pip

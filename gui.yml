@@ -1,14 +1,14 @@
 ---
-- name: Laptop
+- name: GUI
   hosts: all
   become: true
   roles:
     - base_packages
     - brave
     - docker
-    - proton_vpn
+    # - proton_vpn
     - user
-    - vagrant
+    # - vagrant
     - virtual_box
-    - vs_code
-    - zoom
+    # - vs_code
+    # - zoom
