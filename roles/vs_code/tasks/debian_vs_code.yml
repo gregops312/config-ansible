@@ -2,8 +2,8 @@
 ---
 - name: Architecture
   ansible.builtin.command: dpkg --print-architecture
+  changed_when: false
   register: vs_code_arch
-  changed_when: vs_code_arch.changed
 
 - name: "Add : vscode debconf"
   ansible.builtin.shell: |
