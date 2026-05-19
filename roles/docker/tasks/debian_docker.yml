@@ -2,7 +2,7 @@
 ---
 - name: Architecture
   ansible.builtin.command: dpkg --print-architecture
-  changed_when: docker_arch.changed
+  changed_when: false
   register: docker_arch
 
 - name: "Install : packages"
@@ -32,3 +32,13 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
+
+- name: "Service : enable and start docker"
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started
+
+- name: "Verify : docker is running"
+  ansible.builtin.command: docker info
+  changed_when: false

@@ -81,20 +81,7 @@ brew_remove_pkgs:
   - kapacitor
   - zookeeper
 
-# services:
-#   - name: home_assistant
-#     backup: true
-#   - name: influxdb
-#     backup: true
-#   # - name: pihole/dnsmasq.d
-#   # - name: pihole/pihole
-#   - name: shinobi
-#     backup: true
-#   - name: traefik
-#     backup: false
-#   - name: wyze_bridge
-#     backup: true
-#   - name: zwave
-#     backup: true
-
-# setup: false
+server:
+  backup_dir: /backups
+  base_dir: /services
+  timezone: "America/Chicago"

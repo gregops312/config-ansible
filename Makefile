@@ -44,14 +44,35 @@ docker-playbook: docker-build
 	@set -e; \
 		docker rm -f ansible-test >/dev/null 2>&1 || true; \
 		trap 'docker stop ansible-test >/dev/null 2>&1 || true' EXIT; \
-		docker run -d --rm --name ansible-test -v $(PWD):/ansible:ro ansible-test sleep infinity >/dev/null; \
+		docker run -d --rm --name ansible-test \
+			--privileged \
+			--cgroupns=host \
+			--tmpfs /run \
+			--tmpfs /run/lock \
+			-v $(PWD):/ansible:ro \
+			ansible-test >/dev/null; \
+		echo "Waiting for systemd..."; \
+		timeout 30 sh -c 'until docker exec ansible-test systemctl is-system-running 2>/dev/null | grep -qE "running|degraded"; do sleep 1; done'; \
 		ansible-playbook -i ansible-test, -c docker -e ansible_user=root $(ARGS) $(PLAYBOOK)
 
 # Interactive shell in the container
 .PHONY: docker-shell
 docker-shell: docker-build
 	@echo "Starting interactive Ansible container shell..."
-	docker run --rm -it -v $(PWD):/ansible -w /ansible ansible-test bash
+	@docker rm -f ansible-test-shell >/dev/null 2>&1 || true
+	@docker run -d --name ansible-test-shell \
+		--privileged \
+		--cgroupns=host \
+		--tmpfs /run \
+		--tmpfs /run/lock \
+		-v $(PWD):/ansible \
+		-w /ansible \
+		ansible-test >/dev/null
+	@echo "Waiting for systemd..."
+	@timeout 30 sh -c 'until docker exec ansible-test-shell systemctl is-system-running 2>/dev/null | grep -qE "running|degraded"; do sleep 1; done'
+	@echo "Ready — type 'exit' to stop the container."
+	@docker exec -it ansible-test-shell bash || true
+	@docker rm -f ansible-test-shell >/dev/null 2>&1 || true
 
 # =============================================================================
 # lint/test

@@ -4,7 +4,8 @@ FROM ubuntu:26.04
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV ANSIBLE_HOST_KEY_CHECKING=False
-ENV ANSIBLE_STDOUT_CALLBACK=yaml
+ENV ANSIBLE_STDOUT_CALLBACK=ansible.builtin.default
+ENV ANSIBLE_CALLBACK_RESULT_FORMAT=yaml
 ENV ANSIBLE_FORCE_COLOR=true
 ENV PYTHONUNBUFFERED=1
 
@@ -22,7 +23,15 @@ RUN apt-get update -y && \
         python3-apt \
         rsync \
         sudo \
+        systemd \
+        systemd-sysv \
         sshpass
+
+# Remove unnecessary systemd units that cause issues in containers
+RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
+    /etc/systemd/system/*.wants/* \
+    /lib/systemd/system/local-fs.target.wants/* \
+    /lib/systemd/system/sockets.target.wants/*udev*
 
 # Create ansible user with sudo privileges
 RUN useradd -m -s /bin/bash ansible && \
@@ -34,12 +43,13 @@ WORKDIR /ansible
 # Create directories for test data
 RUN mkdir -p /data /tmp/ansible
 
-# Switch to ansible user
+# Verify installation (as ansible user)
 USER ansible
-
-# Verify installation
 RUN ansible --version && \
     ansible-lint --version
 
-# Default command (can be overridden)
-CMD ["bash"]
+# Switch back to root for systemd init (required for Docker-in-Docker)
+USER root
+
+STOPSIGNAL SIGRTMIN+3
+CMD ["/sbin/init"]
